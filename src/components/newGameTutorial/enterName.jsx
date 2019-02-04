@@ -41,7 +41,6 @@ export class EnterName extends React.Component {
           onClick={this.onClick}
         />
       </React.Fragment>
-
     );
   }
 }
