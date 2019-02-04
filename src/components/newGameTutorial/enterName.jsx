@@ -12,12 +12,10 @@ export class EnterName extends React.Component {
 
   onClick = () => {
     let username = this.state.value;
-      console.log('username: ', username);
       this.props.setUsername(username);
   }
 
   handleChange = (event) => {
-    console.log('event: ', event.target.value)
     this.setState({ value: event.target.value });
   }
 
