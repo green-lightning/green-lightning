@@ -2,6 +2,7 @@ import React from 'react';
 import TradeTable from './tradeTable';
 import { connect } from 'react-redux';
 import { buyItems, sellItems } from '../../actions/appActions';
+import SimpleSnackbar, { openSnackbar } from '../snackbars/simpleSnackbar';
 
 
 class TradeTab extends React.Component {
@@ -19,13 +20,11 @@ class TradeTab extends React.Component {
     let itemPrice = planetPrices[currentPlanetId][itemName];
     let buyPrice = sliderValue * itemPrice;
 
-    // check that planet has enough iventory?
-
     if (buyPrice <= credits) {
       buyItems(currentPlanetId, itemName, buyPrice, sliderValue);
     }
     if (buyPrice > credits) {
-      console.log('Problem: You do not have enough money')
+      openSnackbar({ message: 'Not enough money' });
     }
   }
 
@@ -39,7 +38,7 @@ class TradeTab extends React.Component {
       sellItems(currentPlanetId, itemName, sellPrice, sliderValue);
     }
     if (sliderValue > playerInventory[itemName]) {
-      console.log('Problem: You dont have enough of this item to sell')
+      openSnackbar({ message: 'You do not have enough items to sell' });
     }
   }
 
@@ -54,16 +53,21 @@ class TradeTab extends React.Component {
 
     if (transactionType == 'Buy') {
       return (
-        <TradeTable
-          transactionSymbol={'+'}
-          transactionType={transactionType}
-          currentPlanetId={currentPlanetId}
-          inventory={planetInventories[currentPlanetId]}
-          prices={planetPrices[currentPlanetId]}
-          handleTransaction={this.handleBuy}
-          sliderValue={this.state.sliderValue}
-          handleChange={this.handleChange}
-        />
+        <div>
+          <SimpleSnackbar
+            snackbarIsOpen={this.state.snackbarIsOpen}
+          />
+          <TradeTable
+            transactionSymbol={'+'}
+            transactionType={transactionType}
+            currentPlanetId={currentPlanetId}
+            inventory={planetInventories[currentPlanetId]}
+            prices={planetPrices[currentPlanetId]}
+            handleTransaction={this.handleBuy}
+            sliderValue={this.state.sliderValue}
+            handleChange={this.handleChange}
+          />
+        </div>
       );
     }
     if (transactionType == 'Sell') {
