@@ -49,7 +49,10 @@ class TradeTab extends React.Component {
       planetInventories,
       planetPrices,
       playerInventory,
+      items,
     } = this.props;
+
+    console.log(items['water'])
 
     if (transactionType == 'Buy') {
       return (
@@ -93,7 +96,8 @@ const mapStateToProps = state => {
     planetInventories: state.planetInventories,
     planetPrices: state.planetPrices,
     credits: state.credits,
-    playerInventory: state.playerInventory
+    playerInventory: state.playerInventory,
+    items: state.items,
   };
 }
 
