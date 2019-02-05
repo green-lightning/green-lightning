@@ -52,7 +52,7 @@ class TradeTab extends React.Component {
       items,
     } = this.props;
 
-    console.log(items['water'])
+    //console.log(Object.keys(items['water']))
 
     if (transactionType == 'Buy') {
       return (
@@ -65,6 +65,7 @@ class TradeTab extends React.Component {
             transactionType={transactionType}
             currentPlanetId={currentPlanetId}
             inventory={planetInventories[currentPlanetId]}
+            items={items}
             prices={planetPrices[currentPlanetId]}
             handleTransaction={this.handleBuy}
             sliderValue={this.state.sliderValue}
