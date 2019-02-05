@@ -49,7 +49,6 @@ class TradeTab extends React.Component {
       planetInventories,
       planetPrices,
       playerInventory,
-      items,
     } = this.props;
 
     //console.log(Object.keys(items['water']))

@@ -30,14 +30,11 @@ class TradeTable extends React.Component {
       currentPlanetId,
       credits,
       inventory,
-      items,
       prices,
       handleTransaction,
     } = this.props;
     let inventoryKeys = Object.keys(inventory);
     let filteredInventory = inventoryKeys.filter(itemName => inventory[itemName]);
-
-    console.log(items)
 
     return (
       <Paper className={classes.root}>
