@@ -59,14 +59,19 @@ describe('GameMenu', () => {
       it('renders MenuItems with correct props', () => {
         iconButton = wrapper.find('#game-menu-icon').hostNodes();
         iconButton.simulate('click');
-        firstMenuItem = wrapper.find('MenuItem').first();
-        secondMenuItem = wrapper.find('MenuItem').last();
+        firstMenuItem = wrapper.find('MenuItem').at(0);
+        secondMenuItem = wrapper.find('MenuItem').at(1);
+        thirdMenuItem = wrapper.find('MenuItem').at(2);
+        console.log('secondMenuItem: ', secondMenuItem.length)
         expect(firstMenuItem.length).toEqual(1);
         expect(firstMenuItem.props().onClick).toEqual(instance.handleSave);
         expect(firstMenuItem.html()).toContain('Save');
         expect(secondMenuItem.length).toEqual(1);
         expect(secondMenuItem.props().onClick).toEqual(instance.handleSaveAndExit);
         expect(secondMenuItem.html()).toContain('Save and Exit');
+        expect(thirdMenuItem.length).toEqual(1);
+        expect(thirdMenuItem.props().onClick).toEqual(props.toggleMusic);
+        expect(thirdMenuItem.html()).toContain('Toggle Game Music');
       });
     });
   });
@@ -118,6 +123,21 @@ describe('GameMenu', () => {
   });
 
   describe('mapStateToProps', () => {
+    it('maps correctly', () => {
+      mapStateToProps = require('../../../src/components/menus/gameMenu').mapStateToProps;
+      initialState = {
+        blue: {
+          monster: 'ha ha',
+        },
+        monkey: jest.fn(),
+      };
+      expect(mapStateToProps(initialState)).toEqual({
+        state: {...initialState}
+      });
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
     it('maps correctly', () => {
       mapStateToProps = require('../../../src/components/menus/gameMenu').mapStateToProps;
       initialState = {
