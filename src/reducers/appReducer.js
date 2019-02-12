@@ -12,7 +12,9 @@ import {
   BUY_ITEMS,
   SELL_ITEMS,
   SET_USERNAME,
+  CYCLE_DAY,
 } from "../data/constants";
+import { newPrices, newQuantities } from '../components/helpers/algorithm';
 
 let data = parseDataFile();
 
@@ -85,16 +87,24 @@ function appReducer(state = initialState, action) {
     };
   }
 
-  if (action.type === ASSIGN_GAME_DEFAULTS) {
-    return Object.assign({}, state, defaults);
-  }
-
   if (action.type === SET_USERNAME) {
-    console.log(action.username);
     return {
       ...state,
       username: action.username,
     };
+  }
+
+  if (action.type === CYCLE_DAY) {
+    return {
+      ...state,
+      username: action.username,
+      planetPrices: newPrices(),
+      planetInventories: newQuantities(),
+    };
+  }
+
+  if (action.type === ASSIGN_GAME_DEFAULTS) {
+    return Object.assign({}, state, defaults);
   }
 
 /*
@@ -108,7 +118,6 @@ function appReducer(state = initialState, action) {
     });
   }
 */
-
 
   return state;
 };
