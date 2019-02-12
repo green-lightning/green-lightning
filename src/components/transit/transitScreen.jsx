@@ -1,12 +1,17 @@
 import React from 'react';
 import RouteButton from '../buttons/routeButton';
-import { setCurrentPlanet } from '../../actions/appActions';
+import { setCurrentPlanet, cycleDay } from '../../actions/appActions';
 import { connect } from 'react-redux';
 
 class TransitScreen extends React.Component {
 
   onClick = () => {
     this.props.setCurrentPlanet(this.props.destinationPlanet)
+    this.handleCycleDay();
+  }
+
+  handleCycleDay = () => {
+    this.props.cycleDay();
   }
 
   render() {
@@ -33,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentPlanet: (planetId) =>
     dispatch(setCurrentPlanet(planetId)),
+    cycleDay: () => dispatch(cycleDay()),
   };
 };
 

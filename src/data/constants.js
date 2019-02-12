@@ -10,6 +10,7 @@ export const TOGGLE_MUSIC = "TOGGLE_MUSIC"
 export const BUY_ITEMS = "BUY_ITEMS";
 export const SELL_ITEMS = "SELL_ITEMS";
 export const SET_USERNAME = "SET_USERNAME";
+export const CYCLE_DAY = "CYCLE_DAY";
 
 export const creditsPerTonne = 25;
 export const gmPerTonne = 20;

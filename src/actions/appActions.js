@@ -8,7 +8,7 @@ import {
   BUY_ITEMS,
   SELL_ITEMS,
   SET_USERNAME,
-
+  CYCLE_DAY,
 } from "../data/constants";
 
 export function changeSelectedPlanet(planetId) {
@@ -48,7 +48,6 @@ export function refillFuel(fuelNeeded, cost) {
 };
 
 export function setUsername(username){
-  console.log(username)
   return {
     type: SET_USERNAME,
     username: username,
@@ -84,5 +83,10 @@ export function sellItems(currentPlanetId, itemName, sellPrice, sellQuantity) {
     sellPrice,
     sellQuantity
   };
+};
 
+export function cycleDay() {
+  return {
+    type: CYCLE_DAY,
+  };
 };
