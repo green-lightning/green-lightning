@@ -1,5 +1,6 @@
 let defaultPrices
-, defaultQuantities;
+, defaultQuantities
+, defaultChances;
 
 export function newPrices() {
   let newPrices = {};
@@ -20,6 +21,9 @@ export function newQuantities() {
     Object.keys(defaultQuantities[planet]).map((item) => {
       let baseQuantity = (defaultQuantities[planet][item]);
       newQuantities[planet][item] = getRandomPositiveInt((baseQuantity * 0.5), (baseQuantity * 1.5));
+      if (!isPresent(defaultChances[planet][item])) {
+        newQuantities[planet][item] = 0;
+      }
     });
   });
   return newQuantities;
@@ -29,6 +33,10 @@ function getRandomPositiveInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.abs(Math.floor(Math.random() * (max - min + 1)) + min);
+}
+
+function isPresent(percentChance) {
+  return (getRandomPositiveInt(0, 101) <= percentChance);
 }
 
 
@@ -195,5 +203,88 @@ defaultQuantities = {
     gold: 8,
     water: 18,
     antibiotics: 3,
+  },
+};
+
+defaultChances = {
+  terra: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  mercurion: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  orias: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  rust: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  k787: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  sunspeared: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  chindi: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  omega: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  ark: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
+  },
+  aquaris: {
+    narcotics: 50,
+    furs: 80,
+    seeds: 90,
+    gold: 30,
+    water: 100,
+    antibiotics: 40,
   },
 };
