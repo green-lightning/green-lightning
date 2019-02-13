@@ -1,13 +1,13 @@
-let defaultPrices
-, defaultQuantities
+let basePrices
+, baseQuantities
 , defaultChances;
 
 export function newPrices() {
   let newPrices = {};
-  Object.keys(defaultPrices).map((planet) => {
+  Object.keys(basePrices).map((planet) => {
     newPrices[planet] = {};
-    Object.keys(defaultPrices[planet]).map((item) => {
-      let basePrice = (defaultPrices[planet][item]);
+    Object.keys(basePrices[planet]).map((item) => {
+      let basePrice = (basePrices[planet][item]);
       newPrices[planet][item] = getRandomPositiveInt((basePrice * 0.8), (basePrice * 1.2));
     });
   });
@@ -16,12 +16,12 @@ export function newPrices() {
 
 export function newQuantities() {
   let newQuantities = {};
-  Object.keys(defaultQuantities).map((planet) => {
+  Object.keys(baseQuantities).map((planet) => {
     newQuantities[planet] = {};
-    Object.keys(defaultQuantities[planet]).map((item) => {
-      let baseQuantity = (defaultQuantities[planet][item]);
+    Object.keys(baseQuantities[planet]).map((item) => {
+      let baseQuantity = (baseQuantities[planet][item]);
       newQuantities[planet][item] = getRandomPositiveInt((baseQuantity * 0.5), (baseQuantity * 1.5));
-      if (!isPresent(defaultChances[planet][item])) {
+      if (!isPresent(baseItemChance[planet][item])) {
         newQuantities[planet][item] = 0;
       }
     });
@@ -40,7 +40,7 @@ function isPresent(percentChance) {
 }
 
 
-defaultPrices = {
+basePrices = {
   terra: {
     narcotics: 500,
     furs: 25,
@@ -123,7 +123,7 @@ defaultPrices = {
   },
 };
 
-defaultQuantities = {
+baseQuantities = {
   terra: {
     narcotics: 5,
     furs: 15,
@@ -206,7 +206,7 @@ defaultQuantities = {
   },
 };
 
-defaultChances = {
+baseItemChance = {
   terra: {
     narcotics: 50,
     furs: 80,
